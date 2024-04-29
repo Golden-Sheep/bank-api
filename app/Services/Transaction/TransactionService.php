@@ -2,6 +2,8 @@
 
 namespace App\Services\Transaction;
 
+use App\Repositories\Transaction\TransactionRepositoryInterface;
+
 /**
  * Class TransactionService
  *
@@ -9,8 +11,16 @@ namespace App\Services\Transaction;
  */
 class TransactionService implements TransactionServiceInterface
 {
+    private TransactionRepositoryInterface $transactionRepository;
+
     public function __construct(
+        TransactionRepositoryInterface $transactionRepository
     ) {
+        $this->transactionRepository = $transactionRepository;
+    }
+
+    public function transfer(array $data)
+    {
 
     }
 }

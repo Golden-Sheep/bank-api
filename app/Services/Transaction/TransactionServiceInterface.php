@@ -9,4 +9,5 @@ namespace App\Services\Transaction;
  */
 interface TransactionServiceInterface
 {
+    public function transfer(array $data);
 }
