@@ -26,8 +26,10 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'cpf_cnpj' => fake()->numerify('###########'),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'is_seller' => 0,
             'remember_token' => Str::random(10),
         ];
     }
@@ -39,6 +41,28 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    /**
+     * Configure the model to have a CNPJ instead of a CPF.
+     */
+    public function withCNPJ(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'cpf_cnpj' => fake()->numerify('##############'),
+            ];
+        });
+    }
+
+    /**
+     * Configure the model to be a seller.
+     */
+    public function asSeller(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'is_seller' => 1,
         ]);
     }
 }
