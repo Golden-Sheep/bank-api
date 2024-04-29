@@ -19,4 +19,4 @@ Route::get('/ping', function () {
 });
 
 Route::post('/transfer', [TransactionController::class, 'transfer'])
-    ->name('transaction.transfer');
+    ->name('api.transaction.transfer');

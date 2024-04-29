@@ -5,7 +5,7 @@ namespace App\Repositories\Transaction;
 use App\Repositories\Adapters\Eloquent\Transaction\TransactionRepositoryAdapter;
 
 /**
- * Inteface TransactionRepository
+ * Class TransactionRepository
  *
  * @author Joao Victor S <dev.jvictor@gmail.com>
  */
