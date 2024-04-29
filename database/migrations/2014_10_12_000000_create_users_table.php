@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('cpf_cnpj')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('is_seller')->unique();
             $table->rememberToken();
             $table->timestamps();
         });
