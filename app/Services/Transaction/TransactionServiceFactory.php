@@ -2,6 +2,8 @@
 
 namespace App\Services\Transaction;
 
+use App\Repositories\Transaction\TransactionRepositoryInterface;
+
 /**
  * Class TransactionServiceFactory
  *
@@ -11,6 +13,7 @@ class TransactionServiceFactory
 {
     public function __invoke(): TransactionService
     {
-        return new TransactionService();
+        $transactionRepository = app(TransactionRepositoryInterface::class);
+        return new TransactionService($transactionRepository);
     }
 }

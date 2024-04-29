@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Transaction;
 
+use App\Repositories\Adapters\Eloquent\Transaction\TransactionRepositoryAdapter;
 use App\Repositories\Transaction\TransactionRepository;
 
 /**
@@ -13,6 +14,10 @@ class TransactionRepositoryFactory
 {
     public function __invoke(): TransactionRepository
     {
-        return new TransactionRepository();
+        $adaptador = app(TransactionRepositoryAdapter::class);
+
+        return new TransactionRepository(
+            $adaptador
+        );
     }
 }

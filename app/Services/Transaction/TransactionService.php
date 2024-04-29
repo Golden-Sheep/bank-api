@@ -21,6 +21,6 @@ class TransactionService implements TransactionServiceInterface
 
     public function transfer(array $data)
     {
-
+        return $this->transactionRepository->transfer();
     }
 }

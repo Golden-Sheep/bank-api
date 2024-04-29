@@ -11,5 +11,8 @@ use App\Repositories\Transaction\TransactionRepositoryInterface;
  */
 class TransactionRepositoryAdapter implements TransactionRepositoryInterface
 {
-
+    public function transfer()
+    {
+        return 'oix';
+    }
 }
