@@ -9,5 +9,8 @@ namespace App\Services\Transaction;
  */
 interface TransactionServiceInterface
 {
-    public function transfer(array $data);
+    /**
+     * @param  array<mixed>  $data
+     */
+    public function transfer(array $data): bool;
 }

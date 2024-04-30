@@ -26,7 +26,10 @@ class TransactionService implements TransactionServiceInterface
         $this->managerTransactionServiceAPI = $managerTransactionServiceAPI;
     }
 
-    public function transfer(array $data)
+    /**
+     * @param  array<mixed>  $data
+     */
+    public function transfer(array $data): bool
     {
         $value = $data['value'] * 100;
         $this->validateTransactionPreconditions($data['payer'], $value);
@@ -36,9 +39,11 @@ class TransactionService implements TransactionServiceInterface
             throw new HttpException(500, 'Something went wrong with the transfer.');
         }
         $this->managerTransactionServiceAPI->sendTransactionSuccessNotification();
+
+        return true;
     }
 
-    private function getTransactionAuthorization()
+    private function getTransactionAuthorization(): bool
     {
         $authorization = $this->managerTransactionServiceAPI->getTransactionAuthorization();
         if (! $authorization) {
@@ -48,7 +53,7 @@ class TransactionService implements TransactionServiceInterface
         return true;
     }
 
-    private function validateTransactionPreconditions(int $payer, int $value)
+    private function validateTransactionPreconditions(int $payer, int $value): bool
     {
         $payerInfo = $this->transactionRepository->getInfoPayer($payer);
         if (! $payerInfo) {
@@ -58,7 +63,7 @@ class TransactionService implements TransactionServiceInterface
         return $this->verifyBalanceBeforeTransfer($payerInfo, $value);
     }
 
-    private function verifyBalanceBeforeTransfer(User $payer, int $value)
+    private function verifyBalanceBeforeTransfer(User $payer, int $value): bool
     {
         if ($payer['is_seller']) {
             throw new HttpException(422, 'Sellers are not allowed to perform this transaction.');

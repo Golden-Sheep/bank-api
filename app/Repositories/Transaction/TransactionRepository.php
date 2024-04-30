@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Transaction;
 
+use App\Models\User;
 use App\Repositories\Adapters\Eloquent\Transaction\TransactionRepositoryAdapter;
 
 /**
@@ -18,12 +19,19 @@ class TransactionRepository implements TransactionRepositoryInterface
         $this->transactionRepositoryAdapter = $transactionRepositoryAdapter;
     }
 
-    public function transfer(int $payer, int $payee, int $value)
+    /**
+     * @return array<mixed>
+     */
+    public function transfer(int $payer, int $payee, int $value): array
     {
         return $this->transactionRepositoryAdapter->transfer($payer, $payee, $value);
     }
 
-    public function getInfoPayer(int $userId)
+    /**
+     * @param  int  $userId  User ID to fetch.
+     * @return User|null Returns User object if found, or null if not found.
+     */
+    public function getInfoPayer(int $userId): ?User
     {
         return $this->transactionRepositoryAdapter->getInfoPayer($userId);
     }

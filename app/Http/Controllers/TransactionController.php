@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Transaction\TransferRequest;
 use App\Services\Transaction\TransactionServiceInterface;
+use Illuminate\Http\JsonResponse;
 
 class TransactionController extends Controller
 {
@@ -14,7 +15,13 @@ class TransactionController extends Controller
         $this->transactionService = $transactionService;
     }
 
-    public function transfer(TransferRequest $request)
+    /**
+     * Transfer funds between accounts.
+     *
+     *
+     * @throws \HttpException If the transfer fails
+     */
+    public function transfer(TransferRequest $request): JsonResponse
     {
         $this->transactionService->transfer($request->validated());
 

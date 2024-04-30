@@ -4,8 +4,8 @@ namespace App\Repositories\Adapters\Eloquent\Transaction;
 
 use App\Models\User;
 use App\Repositories\Transaction\TransactionRepositoryInterface;
-use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Inteface TransactionRepositoryAdapter
@@ -14,13 +14,22 @@ use Exception;
  */
 class TransactionRepositoryAdapter implements TransactionRepositoryInterface
 {
+    private User $model;
+
     public function __construct(
         User $model
     ) {
         $this->model = $model;
     }
 
-    public function transfer(int $payer, int $payee, int $value)
+    /**
+     * Transfer funds between accounts.
+     *
+     * @return array<mixed>
+     *
+     * @throws Exception
+     */
+    public function transfer(int $payer, int $payee, int $value): array
     {
         try {
             return DB::transaction(function () use ($payer, $payee, $value) {
@@ -48,7 +57,13 @@ class TransactionRepositoryAdapter implements TransactionRepositoryInterface
         }
     }
 
-    public function getInfoPayer(int $userId): mixed
+    /**
+     * Retrieve information about a payer by user ID.
+     *
+     * @param  int  $userId  User ID to fetch.
+     * @return User|null Returns User object if found, or null if not found.
+     */
+    public function getInfoPayer(int $userId): ?User
     {
         $user = $this->model->newQuery()->select('balance', 'is_seller')->find($userId);
         if ($user) {

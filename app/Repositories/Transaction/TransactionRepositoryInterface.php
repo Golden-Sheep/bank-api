@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Transaction;
 
+use App\Models\User;
+
 /**
  * Inteface TransactionRepositoryInterface
  *
@@ -9,7 +11,10 @@ namespace App\Repositories\Transaction;
  */
 interface TransactionRepositoryInterface
 {
-    public function transfer(int $payer, int $payee, int $value);
+    /**
+     * @return array<mixed>
+     */
+    public function transfer(int $payer, int $payee, int $value): array;
 
-    public function getInfoPayer(int $userId);
+    public function getInfoPayer(int $userId): ?User;
 }
