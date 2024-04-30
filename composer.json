@@ -51,7 +51,7 @@
         ],
         "pint-fix": "./vendor/bin/pint -v",
         "pint-test": "./vendor/bin/pint --test",
-        "test-codequality": "./vendor/bin/phpmd ./app text phpmd-ics --exclude app/Entities/",
+        "test-codequality": "./vendor/bin/phpmd ./app text phpmd-ics",
         "phpmd": "./vendor/bin/phpmd app text phpmd-laravel",
         "phpmd-ics": "./vendor/bin/phpmd app text phpmd-ics",
         "phpstan": "./vendor/bin/phpstan analyse --memory-limit=-2G",

@@ -16,6 +16,8 @@ class TransactionController extends Controller
 
     public function transfer(TransferRequest $request)
     {
-        return $this->transactionService->transfer($request->validated());
+        $this->transactionService->transfer($request->validated());
+
+        return response()->json(['message' => 'Transaction completed successfully.']);
     }
 }

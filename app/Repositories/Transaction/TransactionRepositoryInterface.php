@@ -9,5 +9,7 @@ namespace App\Repositories\Transaction;
  */
 interface TransactionRepositoryInterface
 {
-    public function transfer();
+    public function transfer(int $payer, int $payee, int $value);
+
+    public function getInfoPayer(int $userId);
 }

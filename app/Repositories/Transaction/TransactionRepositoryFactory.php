@@ -3,7 +3,6 @@
 namespace App\Repositories\Transaction;
 
 use App\Repositories\Adapters\Eloquent\Transaction\TransactionRepositoryAdapter;
-use App\Repositories\Transaction\TransactionRepository;
 
 /**
  * Class TransactionRepositoryFactory

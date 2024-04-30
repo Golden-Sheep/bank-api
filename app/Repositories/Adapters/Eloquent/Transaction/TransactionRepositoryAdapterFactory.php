@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Adapters\Eloquent\Transaction;
 
-
+use App\Models\User;
 
 /**
  * Class TransactionRepositoryAdapterFactory
@@ -16,6 +16,8 @@ class TransactionRepositoryAdapterFactory
      */
     public function __invoke()
     {
-        return new TransactionRepositoryAdapter();
+        $model = app(User::class);
+
+        return new TransactionRepositoryAdapter($model);
     }
 }
